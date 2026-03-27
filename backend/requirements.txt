@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+google-genai
+sqlalchemy
+bcrypt
+pyjwt
+python-dotenv
+pydantic
+pydantic-settings
+passlib[bcrypt]
+python-multipart
+scikit-learn

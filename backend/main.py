@@ -10,12 +10,10 @@ from db import models, database, auth
 from core import ahp_saw, ml_predictor
 from services import gemini_service
 
-# Initialize DB
 models.Base.metadata.create_all(bind=database.engine)
 
 app = FastAPI(title="Cloud Composition Platform API")
 
-# Setup CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], 
@@ -25,7 +23,6 @@ app.add_middleware(
 )
 
 
-# Pydantic Schemas
 
 class UserCreate(BaseModel):
     email: str
@@ -90,8 +87,6 @@ class HybridDeploymentRequest(BaseModel):
 class CompareProvidersRequest(BaseModel):
     provider_1: str
     provider_2: str
-
-# Endpoints
 
 @app.get("/providers")
 def get_providers():

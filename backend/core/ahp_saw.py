@@ -15,6 +15,9 @@ PROVIDERS_BASE = {
     "Heroku": {"Cost": 0.08, "Latency": 15, "Throughput": 8, "Reliability": 99.95, "SecurityScore": 8.5, "Sustainability": 75},
 }
 
+# file_path = "cloud_providers.xlsx"
+# PROVIDERS_BASE = load_providers_from_excel(file_path)
+
 # Criteria characteristics: True if higher is better, False if lower is better.
 CRITERIA_NATURE = {
     "Cost": False,

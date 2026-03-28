@@ -1,22 +1,30 @@
 import numpy as np
+import csv
+import os
 
-# Mock Providers Database (Metrics: Cost($/hr), Latency(ms), Throughput(Gbps), Reliability(%), SecurityScore(1-10), Sustainability(1-100))
-# Real-time simulation logic will add tiny noises to these base values.
-PROVIDERS_BASE = {
-    "AWS": {"Cost": 0.05, "Latency": 20, "Throughput": 10, "Reliability": 99.99, "SecurityScore": 9, "Sustainability": 85},
-    "Google Cloud": {"Cost": 0.045, "Latency": 25, "Throughput": 8, "Reliability": 99.95, "SecurityScore": 9.5, "Sustainability": 98},
-    "Azure": {"Cost": 0.048, "Latency": 22, "Throughput": 9, "Reliability": 99.98, "SecurityScore": 8.5, "Sustainability": 92},
-    "DigitalOcean": {"Cost": 0.02, "Latency": 40, "Throughput": 5, "Reliability": 99.9, "SecurityScore": 7, "Sustainability": 60},
-    "Linode": {"Cost": 0.022, "Latency": 38, "Throughput": 6, "Reliability": 99.9, "SecurityScore": 7.5, "Sustainability": 65},
-    "IBM Cloud": {"Cost": 0.06, "Latency": 18, "Throughput": 12, "Reliability": 99.99, "SecurityScore": 10, "Sustainability": 80},
-    "Vultr": {"Cost": 0.015, "Latency": 45, "Throughput": 4, "Reliability": 99.8, "SecurityScore": 6.5, "Sustainability": 55},
-    "Oracle Cloud": {"Cost": 0.04, "Latency": 28, "Throughput": 7, "Reliability": 99.95, "SecurityScore": 8.5, "Sustainability": 70},
-    "Alibaba Cloud": {"Cost": 0.035, "Latency": 35, "Throughput": 6, "Reliability": 99.9, "SecurityScore": 8, "Sustainability": 65},
-    "Heroku": {"Cost": 0.08, "Latency": 15, "Throughput": 8, "Reliability": 99.95, "SecurityScore": 8.5, "Sustainability": 75},
-}
+def load_providers_from_csv():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(current_dir, "..", "providersdata.csv")
+    
+    providers = {}
+    if not os.path.exists(csv_path):
+        return providers
+        
+    with open(csv_path, mode='r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            provider = row["Provider"]
+            providers[provider] = {
+                "Cost": float(row["Cost"]),
+                "Latency": float(row["Latency"]),
+                "Throughput": float(row["Throughput"]),
+                "Reliability": float(row["Reliability"]),
+                "SecurityScore": float(row["SecurityScore"]),
+                "Sustainability": float(row["Sustainability"])
+            }
+    return providers
 
-# file_path = "cloud_providers.xlsx"
-# PROVIDERS_BASE = load_providers_from_excel(file_path)
+PROVIDERS_BASE = load_providers_from_csv()
 
 # Criteria characteristics: True if higher is better, False if lower is better.
 CRITERIA_NATURE = {

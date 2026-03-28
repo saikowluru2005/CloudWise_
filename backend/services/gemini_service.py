@@ -155,12 +155,15 @@ def generate_compare_opinion(p1_name: str, p1_data: dict, p2_name: str, p2_data:
     if not client:
         return "Google Gemini API Key is missing. Comparison opinion cannot be generated."
         
-    response = client.models.generate_content(
-        model='gemini-2.5-flash',
-        contents=prompt,
-        config=types.GenerateContentConfig(system_instruction="You are a decisive Cloud Infrastructure Architect. Pick a clear winner.")
-    )
-    return response.text
+    try:
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt,
+            config=types.GenerateContentConfig(system_instruction="You are a decisive Cloud Infrastructure Architect. Pick a clear winner.")
+        )
+        return response.text
+    except Exception as e:
+        return f"**Gemini API Error:** Could not generate comparison opinion due to an external API error. Please verify your GEMINI_API_KEY in the `.env` file. \n\nDetails: {str(e)}"
 
 def generate_hybrid_terraform(frontend_provider: str, database_provider: str, github_url: str = None):
     prompt = f"Write a monumental Multi-Cloud Terraform (.tf) Architecture. The Frontend must be hosted dynamically on {frontend_provider}, and it must securely connect to a highly-available Database hosted strictly on {database_provider}."

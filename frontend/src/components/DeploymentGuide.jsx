@@ -3,7 +3,7 @@ import axios from 'axios'
 import { marked } from 'marked'
 import { Terminal, Box, FileCode, X, Copy, Check, GitBranch } from 'lucide-react'
 
-const API_URL = "http://localhost:8000"
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"
 
 export default function DeploymentGuide({ provider, onClose }) {
   const [mode, setMode] = useState('cli') // cli, docker, iac

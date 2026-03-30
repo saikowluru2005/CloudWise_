@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Database, FileText, Download } from 'lucide-react'
 
-const API_URL = "http://localhost:8000"
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"
 
 export default function HistoryPage() {
   const [history, setHistory] = useState([])

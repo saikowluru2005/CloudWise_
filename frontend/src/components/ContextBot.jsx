@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Bot, X, MessageSquare } from 'lucide-react'
 import { marked } from 'marked'
 
-const API_URL = "http://localhost:8000"
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"
 
 export default function ContextBot() {
   const [selectedText, setSelectedText] = useState('')

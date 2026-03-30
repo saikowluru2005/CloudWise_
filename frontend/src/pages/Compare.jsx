@@ -8,7 +8,7 @@ import {
 import { GitCompare, CheckCircle } from 'lucide-react'
 import { marked } from 'marked'
 
-const API_URL = "http://localhost:8000"
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"
 
 export default function ComparePage() {
   const [providers, setProviders] = useState([])

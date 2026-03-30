@@ -4,7 +4,7 @@ import { CloudLightning } from 'lucide-react'
 
 // You would point this to your actual API server URL (FastAPI)
 // Currently defaults to localhost:8000
-const API_URL = "http://localhost:8000"
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"
 
 export default function AuthPage({ setToken }) {
   const [isLogin, setIsLogin] = useState(true)

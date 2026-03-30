@@ -12,7 +12,9 @@ import DeploymentGuide from '../components/DeploymentGuide'
 import { marked } from 'marked'
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"
-const WS_URL = import.meta.env.VITE_WS_URL || "ws://localhost:8000/ws/stream"
+const WS_URL = import.meta.env.VITE_WS_URL === "PROD" 
+  ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/api/ws/stream` 
+  : (import.meta.env.VITE_WS_URL || "ws://localhost:8000/ws/stream")
 
 export default function Dashboard() {
   const [weights, setWeights] = useState({ Cost: 8, Latency: 7, Throughput: 5, Reliability: 9, SecurityScore: 10, Sustainability: 6 })

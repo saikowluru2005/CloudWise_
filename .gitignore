@@ -1,0 +1,18 @@
+# Node modules
+node_modules/
+system-tests/node_modules/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Database and build artifacts
+*.db
+
+# Vite/dev
+/dist
+
+# OS files
+.DS_Store
+Thumbs.db

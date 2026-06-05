@@ -20,9 +20,8 @@ class History(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     timestamp = Column(DateTime, default=datetime.utcnow)
     
-    # JSON stringified inputs/outputs
     input_weights = Column(String) 
     top_provider_chosen = Column(String)
-    action_taken = Column(String) # E.g., 'Viewed Deployment Guide CLI'
+    action_taken = Column(String)
     
     owner = relationship("User", back_populates="histories")

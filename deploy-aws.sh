@@ -6,7 +6,7 @@ echo "=========================================="
 sudo apt-get update -y
 sudo apt-get install -y python3 python3-pip python3-venv nginx git curl software-properties-common
 
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 read -p "Enter your GitHub Repository URL (e.g., https://github.com/username/CloudWise_.git): " REPO_URL
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 deactivate
 
 echo "Creating systemd service for FastAPI..."
-sudo cat <<EOF > /etc/systemd/system/cloudwise-backend.service
+sudo tee /etc/systemd/system/cloudwise-backend.service > /dev/null <<EOF
 [Unit]
 Description=Cloudwise FastAPI Backend
 After=network.target
@@ -52,7 +52,7 @@ npm install
 npm run build
 
 echo "Configuring Nginx..."
-sudo cat <<EOF > /etc/nginx/sites-available/cloudwise
+sudo tee /etc/nginx/sites-available/cloudwise > /dev/null <<EOF
 server {
     listen 80;
     server_name _;

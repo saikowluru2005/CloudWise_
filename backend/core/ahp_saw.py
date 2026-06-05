@@ -26,7 +26,6 @@ def load_providers_from_csv():
 
 PROVIDERS_BASE = load_providers_from_csv()
 
-# Criteria characteristics: True if higher is better, False if lower is better.
 CRITERIA_NATURE = {
     "Cost": False,
     "Latency": False,
@@ -37,11 +36,7 @@ CRITERIA_NATURE = {
 }
 
 def compute_ahp_weights(user_weights: dict):
-    # Simplified AHP: normalize the user's explicit weights (1-10 scale usually)
-    # The AHP Process normally builds a pairwise comparison matrix, but often in dynamic web apps
-    # we simulate the consistency ratio logic by directly normalizing direct pairwise derived points.
     total = sum(user_weights.values())
-    # Normalize to get final weight vector [w1, w2, w3...]
     normalized_weights = {k: v / total for k, v in user_weights.items()}
     return normalized_weights
 

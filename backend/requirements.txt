@@ -10,3 +10,4 @@ pydantic-settings
 passlib[bcrypt]
 python-multipart
 scikit-learn
+python-jose[cryptography]

@@ -1,6 +1,7 @@
 # Node modules
 node_modules/
 system-tests/node_modules/
+system-tests/target/
 
 # Python cache
 __pycache__/
